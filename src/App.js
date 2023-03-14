@@ -19,7 +19,6 @@ const items = [
 function App() {
   return (
     <div>
-      {" "}
       <Accordion items={items} />{" "}
     </div>
   )
