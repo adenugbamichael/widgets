@@ -1,9 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, selected, onSelectedChange }) => {
+  const [open, setOpen] = useState(false)
+
   const renderedOptions = options.map((option) => {
+    if (option.image === selected.image) {
+      return null
+    }
     return (
-      <div key={option.image} className='item'>
+      <div
+        key={option.image}
+        className='item'
+        onClick={() => onSelectedChange(option)}
+      >
         {option.country}
       </div>
     )
@@ -14,10 +23,15 @@ const Dropdown = ({ options }) => {
         <label htmlFor='' className='label'>
           Select a Color
         </label>
-        <div className='ui selection dropdown active'>
+        <div
+          onClick={() => setOpen(!open)}
+          className={`ui selection dropdown ${open ? "visible active" : ""}`}
+        >
           <i className='dropdown icon'></i>
-          <div className='tex'>Select Color</div>
-          <div className='menu visible transition'>{renderedOptions}</div>
+          <div className='text'>{selected.country}</div>
+          <div className={`menu ${open ? "visible transition" : ""}`}>
+            {renderedOptions}
+          </div>
         </div>
       </div>
     </div>
