@@ -5,34 +5,7 @@ import Dropdown from "./components/Dropdown"
 import Translate from "./components/Translate"
 import { items, options } from "./store"
 import Route from "./components/Route"
-
-const showAccordion = (accordion) => {
-  if (window.location.pathname === "/") {
-    return <Accordion items={items} />
-  }
-}
-
-const showList = () => {
-  if (window.location.pathname === "/list") {
-    return <Search />
-  }
-}
-
-const showDropdown = () => {
-  if (window.location.pathname === "/dropdown") {
-    return <Dropdown />
-  }
-}
-
-const showTranslate = () => {
-  if (window.location.pathname === "/translate") {
-    return <Translate />
-  }
-}
-
-// const showComponents = (route, component) => {
-//   return window.location.pathname === route ? component : null
-// }
+import Header from "./components/Header"
 
 function App() {
   const [selected, setSelected] = useState(options[0])
@@ -40,6 +13,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <Route path='/'>
         <Accordion items={items} />
       </Route>
